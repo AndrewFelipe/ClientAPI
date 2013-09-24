@@ -22,11 +22,11 @@ class ComprarCreditosSMS extends PagueVeloz
 
 		switch ($compraCredito) {
 			case 1:
-				$host = '/ComprarCreditoSMSPorDeposito';
+				$host = '/v1/ComprarCreditoSMSPorDeposito';
 				break;
 				
 			case 2:
-				$host = '/ComprarCreditoSMSPorBoleto';
+				$host = '/v1/ComprarCreditoSMSPorBoleto';
 				break;
 		}	
 		

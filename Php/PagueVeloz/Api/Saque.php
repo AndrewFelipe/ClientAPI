@@ -18,7 +18,7 @@ class Saque extends PagueVeloz
 		$machine = null;
 		$this->setAuthDto(new AuthenticationDTO($email->getEmail(), $token));
 		
-		parent::__construct('/Saque', $this->getAuthDto(), $machine);
+		parent::__construct('/v1/Saque', $this->getAuthDto(), $machine);
 	}
 
 	public function Post(SaqueDTO $dto)

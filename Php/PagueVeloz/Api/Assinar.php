@@ -13,7 +13,7 @@ class Assinar extends PagueVeloz
 
 	public function __construct(IHttpClient $machine = null)
 	{
-		parent::__construct('/Assinar', $machine);
+		parent::__construct('/v1/Assinar', $machine);
 	}
 
 	public function Post(AssinarDTO $dto)
@@ -22,7 +22,7 @@ class Assinar extends PagueVeloz
 		$contexto->setMethod('post');
 		$contexto->addHeader($this->_default_header);
 		$contexto->setHost($this->getHost());
-
+		
 		$json = '{ 
 			        "Nome": "%s",
 					"Documento": "%s",

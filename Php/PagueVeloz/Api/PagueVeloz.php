@@ -29,7 +29,7 @@ abstract class PagueVeloz
 			$this->_machine = new Curl();
 		else
 			$this->_machine = $machine;
-
+	
 		$this->setHost($host);
 
 		if ($auth)

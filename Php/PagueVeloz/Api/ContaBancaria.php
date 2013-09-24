@@ -18,7 +18,7 @@ class ContaBancaria extends PagueVeloz
 		$machine = null;
 		$this->setAuthDto(new AuthenticationDTO($email->getEmail(), $token));
 	
-		parent::__construct('/ContaBancaria', $this->getAuthDto(), $machine);
+		parent::__construct('/v2/ContaBancaria', $this->getAuthDto(), $machine);
 	}
 
 	public function Get()

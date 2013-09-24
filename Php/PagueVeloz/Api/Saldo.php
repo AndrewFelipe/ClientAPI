@@ -17,7 +17,7 @@ class Saldo extends PagueVeloz
 		$machine = null;
 		$this->setAuthDto(new AuthenticationDTO($email->getEmail(), $token));
 		
-		parent::__construct('/Saldo', $this->getAuthDto(), $machine);
+		parent::__construct('/v1/Saldo', $this->getAuthDto(), $machine);
 	}
 
 	public function Get()

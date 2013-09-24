@@ -17,7 +17,7 @@ class EmitirBoleto extends PagueVeloz
 	{
 		$this->setAuthDto(new AuthenticationDTO($email->getEmail(), $token));
 
-		parent::__construct('/EmitirBoleto', $this->getAuthDto(), $machine);		
+		parent::__construct('/v1/EmitirBoleto', $this->getAuthDto(), $machine);		
 	}
 
 	public function Post(EmitirBoletoDTO $dto)

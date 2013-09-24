@@ -18,7 +18,7 @@ class ConsultarCliente extends PagueVeloz
 		$machine = null;
 		$this->setAuthDto(new AuthenticationDTO($email->getEmail(), $token));
 
-		parent::__construct('/Consultar',$this->getAuthDto(),$machine);
+		parent::__construct('/v1/Consultar',$this->getAuthDto(),$machine);
 	}
 
 	public function Get(ConsultarClienteDTO $dto)

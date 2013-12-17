@@ -1,0 +1,41 @@
+<?php
+$incrementId = $this->getOrderId();
+
+if ($incrementId) {
+	$order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
+
+	if ($order->getPayment()->getMethodInstance()->getCode() == Daluz_PagueVeloz_Model_BoletoMethod::PAYMENT_METHOD_BANKTRANSFER_CODE) {
+		$valor = $order->getGrandTotal();
+		$seuNumero = $incrementId;
+		$nome = $order->getCustomerName();
+		$cpf  = $order->getCustomerTaxvat();
+
+		try
+		{
+			$boleto = Mage::getModel('pagueveloz/boleto')->loadByOrderId($order->getId());
+			if(!$boleto->getId()) {
+				$url = Mage::getModel('pagueveloz/boletoMethod')->generateBoletoUrl($valor, $seuNumero, $nome, $cpf);
+
+				if ($url) {
+					$boleto->setUrl($url);
+					$boleto->setValor($valor);
+					$boleto->setOrderId($order->getId());
+					$boleto->saveWithConfigData();
+					echo "<a href=\"{$boleto->getUrl()}\" target=\"_blank\">Imprimir Boleto</a>";
+				}
+				else {
+					echo "<b>Não foi possível gerar o Boleto<br>"
+					. "Favor contate o administrador do site</b>";
+				}
+			}
+			else {
+				echo "<a href=\"{$boleto->getUrl()}\" target=\"_blank\">Imprimir Boleto</a>";
+			}
+
+		}
+		catch (Exception $e) {
+			echo $e->getMessage();
+		}
+	}
+}
+?>

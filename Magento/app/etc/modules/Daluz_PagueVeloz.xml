@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Daluz
+ * @package     Daluz_PagueVeloz
+ * @copyright   Copyright (c) 2013 André Felipe Teixeira da Luz <andrew.daluz@gmail.com>
+ */
+-->
+<config>
+    <modules>
+        <Daluz_PagueVeloz>
+            <active>true</active>
+            <codePool>community</codePool>
+	        <!-- <depends>
+                <Mage_Payment />
+            </depends> -->
+        </Daluz_PagueVeloz>
+    </modules>
+</config>

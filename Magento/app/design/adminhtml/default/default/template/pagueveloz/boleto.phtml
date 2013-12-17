@@ -1,0 +1,29 @@
+<div style="" id="sales_order_view_tabs_order_history_content"><div class="entry-edit">
+    <fieldset>
+        <ul>
+            <?php $boleto = $this->getBoleto(); ?>
+            <li>
+            	<strong>Vencimento: </strong><?php $date = new DateTime($boleto->getDataVencimento());
+					echo $date->format('d/m/Y');  ?>
+            </li>
+            <li>
+            	<strong>Url: </strong><?php echo $boleto->getUrl() ?>
+            </li>
+            <li>
+            	<strong>Valor: </strong><?php echo Mage::helper('core')->currency($boleto->getValor(), true, false) ?>
+            </li>
+            <li>
+            	<strong>Status: </strong><?php echo ($boleto->getStatus()) ? $boleto->getStatus() : "Não Pago" ?>
+            </li>
+            <li>
+                <?php $valorPago = ($boleto->getValorPago()) ? $boleto->getValorPago() : 0; ?>
+                <strong>Valor Pago: </strong><?php echo Mage::helper('core')->currency($valorPago, true, false)  ?>
+            </li>
+            <li>
+            	<strong>Verificado automaticamente em: </strong><?php 
+				$date = new DateTime($boleto->getUpdatedTime());
+            	echo ($boleto->getUpdatedTime()) ? $date->format('d/m/Y') : "Não Verificado" ?>
+            </li>
+        </ul>
+    </fieldset>
+</div>

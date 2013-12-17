@@ -1,0 +1,59 @@
+<?php
+/**
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * @see Mage_Payment_Block_Info
+ */
+?>
+<p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+<?php if ($this->getInstructions()): ?>
+<table>
+    <tbody>
+        <tr>
+            <td><?php echo nl2br($this->getInstructions()) ?></td>
+        </tr>
+    </tbody>
+</table>
+<?php endif; ?>
+
+<?php
+$order = $this->getInfo()->getOrder();
+
+if ($order) {
+	$valor = $order->getGrandTotal();
+	$seuNumero = $order->getIncrementId();
+	$nome = $order->getCustomerName();
+	$cpf  = Mage::getModel('customer/customer')->load($order->getCustomerId())->getTaxvat();
+	try
+	{
+		$boleto = Mage::getModel('pagueveloz/boleto')->loadByOrderId($order->getId());
+		if(!$boleto->getId()) {
+			$url = Mage::getModel('pagueveloz/boletoMethod')->generateBoletoUrl($valor, $seuNumero, $nome, $cpf);
+			
+			if ($url) {
+				$boleto->setUrl($url);
+				$boleto->setValor($valor);
+				$boleto->setOrderId($order->getId());
+				$boleto->saveWithConfigData();
+				echo "<a href=\"{$boleto->getUrl()}\" target=\"_blank\">Imprimir Boleto</a>";
+			}
+			else {
+				echo "<b>Não foi possível gerar o Boleto<br>"
+				. "Favor contate o administrador do site</b>";
+			}
+		} 
+		else {
+			echo "<a href=\"{$boleto->getUrl()}\" target=\"_blank\">Imprimir Boleto</a>";
+		}
+	}
+	catch (Exception $e) {
+		echo $e->getMessage();
+	}
+}
+?>

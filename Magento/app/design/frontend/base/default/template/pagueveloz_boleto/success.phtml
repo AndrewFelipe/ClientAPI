@@ -4,7 +4,7 @@ $incrementId = $this->getOrderId();
 if ($incrementId) {
 	$order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
 
-	if ($order->getPayment()->getMethodInstance()->getCode() == Daluz_PagueVeloz_Model_BoletoMethod::PAYMENT_METHOD_BANKTRANSFER_CODE) {
+	if ($order->getPayment()->getMethodInstance()->getCode() == PagueVeloz_Boleto_Model_BoletoMethod::PAYMENT_METHOD_BANKTRANSFER_CODE) {
 		$valor = $order->getGrandTotal();
 		$seuNumero = $incrementId;
 		$nome = $order->getCustomerName();

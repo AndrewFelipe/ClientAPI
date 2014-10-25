@@ -2,70 +2,81 @@
 <config>
     <modules>
         <PagueVeloz_Boleto>
-            <version>0.2.0</version>
+            <version>1.0.1</version>
         </PagueVeloz_Boleto>
     </modules>
     <global>
         <helpers>
-            <pagueveloz>
+            <pagueveloz_boleto>
                 <class>PagueVeloz_Boleto_Helper</class>
-            </pagueveloz>
+            </pagueveloz_boleto>
         </helpers>
         <blocks>
-            <pagueveloz>
+            <pagueveloz_boleto>
                 <class>PagueVeloz_Boleto_Block</class>
-            </pagueveloz>
+            </pagueveloz_boleto>
         </blocks>
         <models>
-            <pagueveloz>
+            <pagueveloz_boleto>
                 <class>PagueVeloz_Boleto_Model</class>
-                <resourceModel>pagueveloz_mysql4</resourceModel>
-            </pagueveloz>
-            <pagueveloz_mysql4>
+                <resourceModel>pagueveloz_boleto_mysql4</resourceModel>
+            </pagueveloz_boleto>
+            <pagueveloz_boleto_mysql4>
                 <class>PagueVeloz_Boleto_Model_Mysql4</class>
                 <entities>
                     <boleto>
                         <table>pagueveloz_boleto</table>
                     </boleto>
                 </entities>
-            </pagueveloz_mysql4>
+            </pagueveloz_boleto_mysql4>
         </models>
         <resources> 
-            <pagueveloz_setup>
+            <pagueveloz_boleto_setup>
                 <setup>
                     <module>PagueVeloz_Boleto</module>
                 </setup>
                 <connection>
                     <use>core_setup</use>
                 </connection>
-            </pagueveloz_setup>
-            <pagueveloz_write>
+            </pagueveloz_boleto_setup>
+            <pagueveloz_boleto_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
-            </pagueveloz_write>
-            <pagueveloz_read>
+            </pagueveloz_boleto_write>
+            <pagueveloz_boleto_read>
                 <connection>
                     <use>core_read</use>
                 </connection>
-            </pagueveloz_read>
+            </pagueveloz_boleto_read>
         </resources>
     </global>
     <frontend>
         <layout>
             <updates>
-                <pagueveloz>
+                <pagueveloz_boleto>
                     <file>pagueveloz_boleto.xml</file>
-                </pagueveloz>
+                </pagueveloz_boleto>
             </updates>
         </layout>
     </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <PagueVeloz_Boleto before="Mage_Adminhtml">PagueVeloz_Boleto_Adminhtml</PagueVeloz_Boleto>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <adminhtml>
         <layout>
             <updates>
-                <pagueveloz>
+                <pagueveloz_boleto>
                     <file>pagueveloz_boleto.xml</file>
-                </pagueveloz>
+                </pagueveloz_boleto>
             </updates>
         </layout>
     </adminhtml>
@@ -74,7 +85,7 @@
             <pagueveloz_boleto>
                 <active>0</active>
                 <production>0</production>
-                <model>pagueveloz/boletoMethod</model>
+                <model>pagueveloz_boleto/boletoMethod</model>
                 <order_status>pending</order_status>
                 <title>Boleto</title>
                 <allowspecific>0</allowspecific>
@@ -89,7 +100,7 @@
                     <cron_expr>* * * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>pagueveloz/cron::verificaBoletoPago</model>
+                    <model>pagueveloz_boleto/cron::verificaBoletoPago</model>
                 </run>
             </pagueveloz_boleto>
         </jobs>

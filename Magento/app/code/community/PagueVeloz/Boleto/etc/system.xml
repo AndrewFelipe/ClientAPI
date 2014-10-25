@@ -1,25 +1,14 @@
 <?xml version="1.0"?>
 <config>
-   <sections>
+    <sections>
         <payment>
             <groups>
-                <pagueveloz_boleto translate="label" module="pagueveloz">
+                <pagueveloz_boleto translate="label" module="pagueveloz_boleto">
                     <label>PagueVeloz - Boleto</label>
                     <sort_order>670</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>0</show_in_store>
-                    <comment>
-                        <![CDATA[
-                            <div class="config-heading">
-                                <strong style="font-size:14px">Informações Importantes</strong><br /><br />
-                                Para solicitar seu token de produção faça o cadastro em 
-                                <a href="https://www.pagueveloz.com.br/Cliente" target="_blank">PagueVeloz</a>.<br /><br />
-                                Para solicitar seu token para testes, em homologação, faça o cadastro em 
-                                <a href="http://pagueveloz.homolog.bludata.net/Cliente" target="_blank">PagueVeloz Homolog</a>.<br />
-                            </div>
-                        ]]>
-                    </comment>
                     <fields>
                         <active translate="label">
                             <label>Enabled</label>
@@ -30,33 +19,27 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </active>
-                        <production translate="label">
-                            <label>Produção</label>
+                        <pdf translate="label">
+                            <label>Generate Pdf</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                        </production>
-                        <email translate="label">
-                            <label>E-mail</label>
-                            <frontend_type>text</frontend_type>
+                        </pdf>
+                        <send_email translate="label">
+                            <label>Enviar por email</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>75</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <comment>Email de cadastro no PagueVeloz</comment>
-                        </email>
-                        <token translate="label">
-                            <label>Token</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>85</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment>Token gerado pela conta PagueVeloz</comment>
-                        </token>
+                            <comment>
+                                Permite que o pagueveloz envie o email automaticamente para o cliente com o boleto gerado
+                            </comment>
+                        </send_email>
                         <order_status translate="label">
                             <label>New order status</label>
                             <frontend_type>select</frontend_type>

@@ -1,9 +1,8 @@
-<?php 
-class PagueVeloz_Boleto_Block_Adminhtml_Sales_Order_View_Tab_Boleto
-    extends Mage_Adminhtml_Block_Sales_Order_Abstract
-    implements Mage_Adminhtml_Block_Widget_Tab_Interface
+<?php
+
+class PagueVeloz_Boleto_Block_Adminhtml_Sales_Order_View_Tab_Boleto extends Mage_Adminhtml_Block_Sales_Order_Abstract implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    
+
     protected function _construct()
     {
         parent::_construct();
@@ -30,8 +29,9 @@ class PagueVeloz_Boleto_Block_Adminhtml_Sales_Order_View_Tab_Boleto
         return $this->getOrder();
     }
 
-    public function getBoleto() {
-        return Mage::getModel('pagueveloz/boleto')->loadByOrderId($this->getOrder()->getId());
+    public function getBoleto()
+    {
+        return Mage::getModel('pagueveloz_boleto/boleto')->loadByOrderId($this->getOrder()->getId());
     }
 
     /**
@@ -56,4 +56,5 @@ class PagueVeloz_Boleto_Block_Adminhtml_Sales_Order_View_Tab_Boleto
     {
         return ($this->getBoleto()->getId()) ? false : true;
     }
+
 }

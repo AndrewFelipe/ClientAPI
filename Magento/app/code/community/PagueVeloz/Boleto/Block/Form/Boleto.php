@@ -1,10 +1,10 @@
 <?php
+
 /**
  * @category    Boleto
  * @package     PagueVeloz_Boleto
  * @copyright   André Felipe (andrew.daluz@gmail.com)
  */
-
 class PagueVeloz_Boleto_Block_Form_Boleto extends Mage_Payment_Block_Form
 {
 
